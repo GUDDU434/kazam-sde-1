@@ -1,13 +1,13 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { GiNotebook } from "react-icons/gi";
+import { IoMdAddCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { AddTask, GetAllTasks } from "../../Redux/task/task.action";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 const Dashboard = () => {
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
-  
 
   const { AllTasks, isTasksLoading, isTasksError } = useSelector(
     (state) => state.Task
@@ -26,17 +26,23 @@ const Dashboard = () => {
   return (
     <>
       <Box
-        width={"40%"}
-        mx={"auto"}
-        mt={8}
-        border={"1px solid rgb(117, 120, 128)"}
-        boxShadow={"rgba(141, 138, 138, 0.24) 0px 3px 8px"}
-        borderRadius={"10px"}
-        p={"20px"}
+        sx={{
+          width: {
+            xs: "85%",
+            sm: "80%",
+            md: "60%",
+            lg: "40%",
+          },
+          mx: "auto",
+          mt: 8,
+          border: "1px solid rgb(117, 120, 128)",
+          boxShadow: "rgba(141, 138, 138, 0.24) 0px 3px 8px",
+          borderRadius: "10px",
+          p: { xs: "16px", sm: "20px" }, // smaller padding on mobile
+        }}
       >
-        <Typography variant="h4" mb={4}>
-          <MenuBookIcon />
-          Note App
+        <Typography variant="h4" fontWeight={"bold"} mb={4}>
+          <GiNotebook /> Note App
         </Typography>
         <Box
           component="form"
@@ -64,11 +70,23 @@ const Dashboard = () => {
               "&:hover": { backgroundColor: "#722f0b" },
             }}
           >
-            +Add
+            <IoMdAddCircle
+              color="white"
+              backgroundColor="#91410e"
+              style={{
+                fontSize: "1.8rem",
+                minWidth: "1.2rem",
+              }}
+            />{" "}
+            <Typography sx={{ ml: 1, fontWeight: "bold" }}>Add</Typography>
           </Button>
         </Box>
 
-        <Typography variant="h6" borderBottom={"2px solid rgb(200, 202, 207)"}>
+        <Typography
+          variant="h6"
+          fontWeight={"bold"}
+          borderBottom={"2px solid rgb(200, 202, 207)"}
+        >
           Notes
         </Typography>
 
